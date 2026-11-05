@@ -1,0 +1,17 @@
+// TypeScript del Worker.
+//
+// Se separa del tsconfig de Next porque los tipos de Cloudflare
+// (`@cloudflare/workers-types`) y los del DOM declaran los mismos globales
+// (`Request`, `Response`, `fetch`) y juntos romperían la compilación. El
+// Worker usa sólo los de Cloudflare; la app usa sólo los del DOM.
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "lib": ["ES2022"],
+    "types": ["@cloudflare/workers-types", "@cloudflare/vitest-plugin/types"],
+    "jsx": "preserve",
+    "noEmit": true
+  },
+  "include": ["**/*.ts"],
+  "exclude": ["node_modules"]
+}

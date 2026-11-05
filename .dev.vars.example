@@ -1,0 +1,43 @@
+# Variables de desarrollo local para `wrangler dev`.
+#
+# Copiar este archivo a `.dev.vars` (que está ignorado por git) y rellenar los
+# valores. NUNCA subir valores reales ni secretos al repositorio.
+#
+# En producción estos mismos nombres se configuran como secretos/vars del
+# Worker (`wrangler secret put`, o los `vars` de wrangler.jsonc).
+
+# Bypass de Cloudflare Access para desarrollo local con `wrangler dev`.
+# Con 1, /api/admin/* acepta cualquier petición y el actor es dev@local.
+# NUNCA definir esta variable en producción.
+ACCESS_DEV_BYPASS=1
+
+# Dominio del equipo de Cloudflare Access, sin protocolo.
+# Ejemplo: tu-equipo.cloudflareaccess.com
+ACCESS_TEAM_DOMAIN=
+
+# Audiencia (Application Audience) de la Access app que protege /admin.
+ACCESS_AUD=
+
+# Caducidad de las invitaciones, en días.
+TOKEN_TTL_DIAS=90
+
+# Secreto de Turnstile. Vacío mientras no se configure el captcha; con valor,
+# el formulario de reseña exige un token válido de Turnstile.
+TURNSTILE_SECRET=
+
+# Google Identity Services opcional. Crear un cliente OAuth tipo Web y autorizar
+# los orígenes exactos (producción HTTPS y http://localhost:8787 para local).
+# Solo ID token de identidad (sub y nombre); sin secreto, access token ni OAuth
+# redirect. Validación RS256/JWKS, emisor, audiencia, expiración y nonce en Worker.
+# Sin ID configurado no aparece Google; el formulario sin cuenta sigue activo.
+# https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid
+GOOGLE_CLIENT_ID=
+# Perfil REAL del negocio en Google. HTTPS. Pendiente de proporcionar; no inventar.
+GOOGLE_BUSINESS_PROFILE_URL=
+# Places API (New) habilitada y facturación; clave restringida a esa API, solo Worker.
+GOOGLE_PLACES_API_KEY=
+# Identificador obtenido con el buscador oficial de Place IDs de Google.
+GOOGLE_PLACE_ID=
+# Política de cancelación: conservar opiniones y estado; quitar la etiqueta de
+# compra verificada cuando la venta está cancelada. Nunca ocultar por estrellas.
+# El aviso describe el identificador privado, la cookie técnica y el consentimiento.

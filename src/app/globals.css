@@ -1,0 +1,680 @@
+@import "tailwindcss";
+
+/* ===================================================================
+   Sistema de diseño de Cafeto Sierra Alta.
+
+   Este archivo es el único lugar del proyecto donde se escribe un color,
+   un radio, una sombra o un tamaño de letra. Si un valor no está aquí, no
+   existe: se agrega primero en este bloque, con su motivo documentado en
+   el README.
+   =================================================================== */
+
+@theme {
+  /* --- Color -------------------------------------------------------
+     Los doce tokens del sistema. Se vacía el espacio de nombres
+     completo para que bg-red-500 o text-white no compilen: un color
+     que no está en este bloque tiene que ser un error, no una
+     tentación.                                                   */
+  --color-*: initial;
+
+  --color-coffee: #1c1410;
+  --color-coffee-medio: #33210f;
+  --color-honey: #c68b34;
+  --color-honey-profundo: #a9741a;
+  --color-honey-texto: #8c5d12;
+  --color-origen: #2d3a2f;
+  --color-origen-claro: #e4ebe1;
+  /* Acciones y barras del admin, según la referencia aprobada. */
+  --color-olivo-admin: #536047;
+  --color-pagina: #f2ede4;
+  --color-superficie: #faf7f2;
+  --color-stone: #e6e1da;
+  --color-tinta-suave: #6b6259;
+  --color-alerta: #a8321e;
+  /* Atribución textual de Google Maps: gris exigido por el proveedor. */
+  --color-google-atribucion: #5e5e5e;
+
+  /* --- Tipografía --------------------------------------------------
+    Dos familias, siete tamaños, sin excepción. El tamaño de letra
+     alcanza su valor de escritorio a los 1024 px, que es el mismo
+     umbral que el punto de corte `lg` de Tailwind, y la cifra de
+     móvil es el extremo inferior del intervalo. Se declara con
+     clamp() y no con dos declaraciones por separado porque @theme no
+     admite breakpoints: una lista doble se desincroniza.
+
+     Las dos familias se declaran más abajo, en el bloque `@theme
+     inline`, porque necesitan resolverse contra las variables que
+     inyecta next/font. Aquí solo se vacía el espacio de nombres.  */
+  --font-*: initial;
+
+  --text-*: initial;
+
+  --text-display: clamp(2.75rem, 2.75rem + 1.9531vw, 4rem);
+  --text-display--line-height: clamp(3rem, 3rem + 1.9531vw, 4.25rem);
+  --text-display--letter-spacing: -0.02em;
+
+  --text-portada: clamp(2.75rem, 2.4rem + 1.5vw, 3.375rem);
+  --text-portada--line-height: 1.12;
+  --text-portada--letter-spacing: -0.02em;
+
+  --text-h2: clamp(1.625rem, 1.625rem + 0.5859vw, 2rem);
+  --text-h2--line-height: clamp(1.875rem, 1.875rem + 0.7813vw, 2.375rem);
+  --text-h2--letter-spacing: -0.015em;
+
+  --text-h3: 1.125rem;
+  --text-h3--line-height: 1.5rem;
+
+  /* Título de producto del catálogo. 20 px y no 18 px porque es el primer
+     título en Fraunces por debajo de `h2`, y la regla de la capa base de
+     este archivo reserva Fraunces a partir de 20 px por contraste. */
+  --text-h4: 1.25rem;
+  --text-h4--line-height: 1.75rem;
+  --text-h4--letter-spacing: -0.01em;
+
+  --text-body: 1rem;
+  --text-body--line-height: 1.625rem;
+
+  --text-small: 0.875rem;
+  --text-small--line-height: 1.375rem;
+
+  --text-label: 0.75rem;
+  --text-label--line-height: 1rem;
+  --text-label--letter-spacing: 0.12em;
+
+  /* --- Radios y sombras ---------------------------------------------
+     Se vacían los dos espacios de nombres antes de declarar los dos
+     radios del sistema. Así `rounded-lg` y `shadow-md` son un error
+     de compilación.
+
+     Regla de superficie: toda tarjeta, panel, botón o etiqueta usa
+     `rounded-sm`. La elevación la da el borde y el color, nunca una
+     sombra: no se escribe `box-shadow` en ninguna parte. El único
+     círculo permitido es la insignia de un icono (`rounded-full`).   */
+  --radius-*: initial;
+  --radius-sm: 3px;
+  --radius-md: 6px;
+
+  --shadow-*: initial;
+
+  /* --- Contenedor ---------------------------------------------------
+     Sitio: 1200 px. Portada: excepción editorial de 1400 px.       */
+  --container-sitio: 75rem;
+  --container-portada: 87.5rem;
+  /* Dashboard horizontal: espacio para gráfica, pendientes y acciones. */
+  --container-admin: 100rem;
+  /* Registro centrado con dos columnas de campos, según referencia. */
+  --container-modal-venta: 54rem;
+
+  /* --- Movimiento ---------------------------------------------------
+     Duraciones y curvas del sistema de motion. Cualquier transición o
+     animación nueva usa uno de estos tokens: un valor fuera de este
+     bloque no existe. `--transition-duration-*` es la llave que genera
+     las utilidades `duration-micro`, `duration-ui`, `duration-reveal`,
+     `duration-crossfade` y `duration-image-reveal`; `--ease-*` genera
+     `ease-ui` y `ease-cine`. */
+  --transition-duration-micro: 180ms;
+  --transition-duration-ui: 250ms;
+  --transition-duration-reveal: 600ms;
+  --transition-duration-crossfade: 800ms;
+  --transition-duration-image-reveal: 1300ms;
+
+  --ease-ui: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-cine: cubic-bezier(0.25, 1, 0.5, 1);
+
+  --animate-filtro: filtro-entrada var(--transition-duration-ui) var(--ease-ui)
+    both;
+  /* Respuesta breve al elegir una calificación, sin mover el área táctil. */
+  --scale-resena-estrella: 1.18;
+  --animate-resena-estrella: resena-estrella-pulso var(--transition-duration-ui)
+    var(--ease-ui) both;
+  /* Expresiones de la calificación: una entrada juguetona, sin bucles. */
+  --rotate-resena-animo: 6deg;
+  --scale-resena-animo: 1.08;
+  --animate-resena-animo: resena-animo-entrada var(--transition-duration-reveal)
+    var(--ease-ui) both;
+  /* El gesto aparece después de elegir, conservando la estrella como protagonista. */
+  --animate-resena-gesto: resena-gesto-aparece var(--transition-duration-ui)
+    var(--ease-ui) both;
+  /* Vida facial después del pulso inicial: movimientos mínimos y una sola vez. */
+  --desplazamiento-resena-mirada: 0.8px;
+  --scale-resena-parpadeo: 0.12;
+  --scale-resena-sonrisa: 1.22;
+  --scale-resena-destello: 1.25;
+  --animate-resena-mirada: resena-mirada var(--transition-duration-crossfade)
+    var(--ease-ui) var(--transition-duration-ui) both;
+  --animate-resena-parpadeo: resena-parpadeo var(--transition-duration-crossfade)
+    var(--ease-ui) var(--transition-duration-ui) both;
+  --animate-resena-guino: resena-guino var(--transition-duration-crossfade)
+    var(--ease-ui) var(--transition-duration-ui) both;
+  --animate-resena-boca: resena-boca-viva var(--transition-duration-crossfade)
+    var(--ease-ui) var(--transition-duration-ui) both;
+  --animate-resena-destello: resena-destello var(--transition-duration-crossfade)
+    var(--ease-ui) var(--transition-duration-micro) both;
+}
+
+/* Las dos familias se resuelven contra las variables que inyecta
+   next/font en <html>, así que el bloque va en `inline`: sin esto,
+   `font-titulos` se resolvería en :root, donde la variable todavía no
+   existe, y el título caería en la fuente de reserva. */
+@theme inline {
+  --font-titulos: var(--fuente-titulos);
+  --font-cuerpo: var(--fuente-cuerpo);
+}
+
+@layer base {
+  :root {
+    /* El ancho del texto no es el ancho del contenedor: son unos 65
+       caracteres. Un párrafo a 1200 px da líneas de más de 150 y se
+       lee mal. */
+    --measure-prose: 36em;
+
+    /* Distancias y escalas del sistema de motion. */
+    --lift-reveal: 14px;
+    --lift-filtro: 8px;
+    --scale-imagen-entrada: 1.035;
+    --scale-imagen-suave: 1.015;
+    --scale-boton: 1.02;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+    font-size: 15px;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    overflow-x: clip;
+  }
+
+  body {
+    background-color: var(--color-pagina);
+    color: var(--color-coffee);
+    font-family: var(--font-cuerpo);
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+    -webkit-font-smoothing: antialiased;
+    /* `clip` y no `hidden`: `hidden` convierte el body en contenedor de
+       scroll y eso rompe el `position: sticky` del encabezado. `clip`
+       recorta igual pero sin crear el contenedor. */
+    overflow-x: clip;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  img,
+  svg,
+  video {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Foco visible en todo elemento interactivo, declarado una sola vez
+     y no botón por botón. 3.8:1 alcanza el mínimo de 3:1 que pide un
+     componente de interfaz. */
+  :focus-visible {
+    outline: 2px solid var(--color-honey-profundo);
+    outline-offset: 2px;
+  }
+
+  a {
+    color: var(--color-honey-texto);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  h1,
+  h2 {
+    font-family: var(--font-titulos);
+    font-weight: 500;
+  }
+
+  h3 {
+    font-weight: 600;
+  }
+
+  /* Fraunces solo a partir de 20 px, porque por debajo pierde contraste.
+     La escala ya lo garantiza: los dos únicos tamaños con Fraunces son
+     `display` (44 px) y `h2` (26 px). No hay ningún token de título por
+     debajo de 20 px, y por eso no hace falta una regla que lo prohíba. */
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+}
+
+@layer components {
+  /* Registro de ventas: el diálogo nativo aísla el fondo y contiene el foco. */
+  .venta-dialogo {
+    width: min(var(--container-modal-venta), calc(100% - 2rem));
+    max-width: none;
+    max-height: calc(100dvh - 2rem);
+    margin: auto;
+    padding: 0;
+    border: 1px solid var(--color-stone);
+    border-radius: var(--radius-md);
+    background: var(--color-superficie);
+    color: var(--color-coffee);
+    overflow: hidden;
+  }
+  .venta-dialogo[open] { display: flex; flex-direction: column; }
+  .venta-dialogo::backdrop { background: color-mix(in srgb, var(--color-coffee) 42%, transparent); }
+  .venta-formulario { display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+  .venta-formulario-cuerpo { min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 0 2rem 1rem; }
+  .venta-formulario-pie { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; flex-shrink: 0; gap: 1rem; border-top: 1px solid var(--color-stone); padding: 1.5rem 2rem; background: var(--color-superficie); }
+  .venta-producto-fila { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr) auto; gap: 1.25rem; }
+  .venta-filtros { display: grid; grid-template-columns: minmax(0,2.2fr) repeat(3,minmax(0,1fr)); gap: 1rem; }
+  .venta-filtro { display: flex; flex-direction: column; justify-content: center; min-width: 0; border: 1px solid var(--color-stone); border-radius: var(--radius-sm); padding: .25rem .75rem; }
+  .venta-filtro > span { color: var(--color-tinta-suave); font-size: var(--text-label); line-height: var(--text-label--line-height); }
+  .venta-filtro select { width: 100%; min-width: 0; min-height: 2rem; background: var(--color-superficie); color: var(--color-coffee); font-size: var(--text-small); line-height: var(--text-small--line-height); }
+  /* Buscador y selectores de Ventas comparten el mismo foco olivo. */
+  :is(.venta-filtros input[type="search"], .venta-filtro select, .venta-dialogo select):focus {
+    outline: 2px solid var(--color-olivo-admin);
+    outline-offset: 2px;
+    accent-color: var(--color-olivo-admin);
+  }
+  .venta-lista-cabecera, .venta-lista-fila { display: grid; grid-template-columns: 5.5rem minmax(10rem,1.3fr) minmax(0,2fr) 6rem 8rem 7rem 1.5rem; align-items: center; gap: 1rem; padding: 1rem 1.5rem; }
+  .venta-lista-cabecera { border-bottom: 1px solid var(--color-stone); font-size: var(--text-small); line-height: var(--text-small--line-height); font-weight: 500; }
+  .venta-lista-fila { width: 100%; text-align: left; }
+  .venta-lista-fila > span { min-width: 0; overflow-wrap: anywhere; }
+  .venta-estado { display: inline-flex; align-items: center; gap: .4rem; border-radius: var(--radius-sm); padding: .3rem .6rem; font-size: var(--text-label); line-height: var(--text-label--line-height); }
+  .venta-estado svg { flex-shrink: 0; }
+  @media (max-width: 1023px) {
+    .venta-filtros { grid-template-columns: repeat(3,minmax(0,1fr)); }
+    .venta-filtros > div:first-child { grid-column: 1 / -1; }
+    .venta-lista-cabecera { display: none; }
+    .venta-lista-fila { grid-template-columns: minmax(0,1fr) auto auto; gap: .5rem 1rem; padding: 1rem; }
+    .venta-folio { grid-column: 1; grid-row: 1; }
+    .venta-total { grid-column: 2; grid-row: 1; }
+    .venta-detalle { grid-column: 3; grid-row: 1; }
+    .venta-productos { grid-column: 1 / -1; grid-row: 2; }
+    .venta-fecha { grid-column: 1 / -1; grid-row: 3; }
+    .venta-entrega { grid-column: 1; grid-row: 4; }
+    .venta-pago { grid-column: 2 / -1; grid-row: 4; }
+  }
+  @media (max-width: 639px) {
+    .venta-dialogo { width: calc(100% - 1rem); max-height: calc(100dvh - 1rem); }
+    .venta-formulario-cuerpo { padding: 0 1.25rem 1rem; }
+    .venta-formulario-pie { padding: 1rem 1.25rem; }
+    .venta-formulario-pie > div { display: grid; grid-template-columns: 1fr 1fr; width: 100%; }
+    .venta-producto-fila { grid-template-columns: minmax(0,1fr) auto; gap: 1rem; }
+    .venta-producto-fila > div:first-child { grid-column: 1 / -1; }
+    .venta-filtros { grid-template-columns: minmax(0,1fr); }
+    .venta-filtro select { min-height: 2.75rem; }
+  }
+
+  /* El admin conserva el ancho y los tokens del sitio. */
+  .admin-barra { display: flex; align-items: center; gap: 2.5rem; min-height: 4.5rem; }
+  .admin-barra nav { align-self: stretch; }
+  .admin-periodo { margin-left: auto; }
+  .admin-inicio { display: grid; gap: 1rem; }
+  .admin-tarjeta { min-width: 0; border: 1px solid var(--color-stone); border-radius: var(--radius-sm); background: var(--color-superficie); padding: 1rem; }
+  .admin-tarjeta.admin-metrica { padding: 1.25rem 1rem; }
+  .admin-central { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 1rem; }
+  .admin-panel-grafica { grid-column: 1 / -1; }
+  .admin-inferior { display: grid; gap: 1rem; }
+  .admin-accion { display: flex; align-items: center; justify-content: center; gap: .75rem; min-height: 2.875rem; padding: .5rem; border-radius: var(--radius-sm); font-size: var(--text-small); line-height: var(--text-small--line-height); text-decoration: none; cursor: pointer; }
+  .admin-grafica { display: grid; grid-template-columns: auto minmax(0,1fr); gap: .75rem; padding-bottom: 1.5rem; }
+  .admin-grafica-escala { display: flex; flex-direction: column; justify-content: space-between; align-items: flex-end; height: 10rem; font-size: var(--text-label); line-height: var(--text-label--line-height); color: var(--color-tinta-suave); }
+  .admin-grafica-trazado { position: relative; min-width: 0; height: 10rem; }
+  .admin-grafica-guias { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: space-between; }
+  .admin-grafica-guias span { border-top: 1px dashed var(--color-stone); }
+  .admin-grafica-barras { position: relative; display: grid; height: 100%; border-left: 1px solid var(--color-stone); border-bottom: 1px solid var(--color-stone); }
+  .admin-barra-venta { width: 65%; max-width: 1.25rem; min-height: 2px; background: var(--color-olivo-admin); border-radius: var(--radius-sm) var(--radius-sm) 0 0; cursor: pointer; }
+  .admin-barra-venta:hover, .admin-barra-venta:focus-visible { background: var(--color-origen); }
+  .admin-grafica-fechas { position: relative; margin-top: .5rem; font-size: var(--text-label); line-height: var(--text-label--line-height); color: var(--color-tinta-suave); }
+  .admin-grafica-fechas span { position: absolute; white-space: nowrap; }
+  .admin-grafica-tooltip { position: absolute; top: 0; right: 0; z-index: 1; padding: .5rem .75rem; border: 1px solid var(--color-stone); border-radius: var(--radius-sm); background: var(--color-superficie); font-size: var(--text-small); line-height: var(--text-small--line-height); pointer-events: none; }
+  .admin-recientes { min-width: 45rem; }
+  .admin-productos { min-width: 9rem; max-width: 16rem; overflow-wrap: anywhere; }
+  .admin-marca { min-height: 13rem; }
+  .admin-marca-velo { background: linear-gradient(to right, var(--color-superficie), color-mix(in srgb, var(--color-superficie) 85%, transparent) 48%, transparent); }
+  @media (min-width: 1024px) {
+    .admin-central { grid-template-columns: minmax(0,2.15fr) minmax(0,1fr) minmax(0,1fr); }
+    .admin-panel-grafica { grid-column: auto; }
+    .admin-inferior { grid-template-columns: minmax(0,2.6fr) minmax(0,1fr); }
+    .admin-recientes { min-width: 0; }
+    .admin-tarjeta { padding: 1rem; }
+  }
+  @media (min-width: 640px) and (max-width: 1023px) {
+    .admin-barra { flex-wrap: wrap; gap: 0 1.5rem; padding-top: .75rem; }
+    .admin-barra nav { order: 3; width: 100%; min-height: 3rem; }
+  }
+  @media (max-width: 639px) {
+    .admin-barra { flex-wrap: wrap; gap: .5rem 1rem; padding-top: 1rem; }
+    .admin-barra > a { width: 100%; }
+    .admin-barra nav { gap: 1rem; }
+    .admin-periodo { gap: .25rem; }
+    .admin-periodo select { padding-inline: .25rem; }
+    .admin-central { grid-template-columns: minmax(0,1fr); }
+    .admin-grafica-fechas span { display: none; }
+    .admin-grafica-fechas span:first-child,
+    .admin-grafica-fechas span:nth-child(3),
+    .admin-grafica-fechas span:last-child { display: block; }
+  }
+
+  .prosa {
+    max-width: var(--measure-prose);
+  }
+
+  /* Precios, pesos y medidas van en cifras tabulares, no en una tercera
+     familia monoespaciada. */
+  .cifras {
+    font-variant-numeric: tabular-nums;
+  }
+
+  .origen-canvas {
+    height: 330px;
+  }
+
+  /* Velo editorial inferior-izquierdo para el carrusel de origen:
+     garantiza contraste para el texto en la esquina inferior izquierda
+     mientras la parte superior y derecha permanecen luminosas y nítidas. */
+  .origen-scrim {
+    background: linear-gradient(
+      to top,
+      color-mix(in srgb, var(--color-coffee) 85%, transparent) 0%,
+      color-mix(in srgb, var(--color-coffee) 58%, transparent) 42%,
+      color-mix(in srgb, var(--color-coffee) 18%, transparent) 72%,
+      transparent 100%
+    );
+  }
+
+  /* Velo fotográfico de portada: garantiza contraste del texto a la izquierda
+     manteniendo la fotografía natural y luminosa a la derecha. */
+  .portada-scrim {
+    background: linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--color-coffee) 82%, transparent) 0%,
+      color-mix(in srgb, var(--color-coffee) 60%, transparent) 50%,
+      color-mix(in srgb, var(--color-coffee) 25%, transparent) 100%
+    );
+  }
+
+  @media (min-width: 768px) {
+    .portada-scrim {
+      background: linear-gradient(
+        to right,
+        color-mix(in srgb, var(--color-coffee) 86%, transparent) 0%,
+        color-mix(in srgb, var(--color-coffee) 74%, transparent) 32%,
+        color-mix(in srgb, var(--color-coffee) 40%, transparent) 58%,
+        color-mix(in srgb, var(--color-coffee) 8%, transparent) 80%,
+        transparent 100%
+      );
+    }
+  }
+}
+
+@media (min-width: 640px) {
+  .origen-canvas {
+    height: 380px;
+  }
+
+  .origen-scrim {
+    background: linear-gradient(
+      115deg,
+      color-mix(in srgb, var(--color-coffee) 88%, transparent) 0%,
+      color-mix(in srgb, var(--color-coffee) 68%, transparent) 38%,
+      color-mix(in srgb, var(--color-coffee) 20%, transparent) 68%,
+      transparent 100%
+    ),
+    linear-gradient(
+      to top,
+      color-mix(in srgb, var(--color-coffee) 75%, transparent) 0%,
+      color-mix(in srgb, var(--color-coffee) 20%, transparent) 35%,
+      transparent 65%
+    );
+  }
+}
+
+@media (min-width: 1024px) {
+  .origen-canvas {
+    height: 440px;
+  }
+}
+
+/* ===================================================================
+   Motion System.
+
+   Este bloque es el único lugar donde se escribe un keyframe, una
+   duración de reveal o una distancia de desplazamiento. Todo vive
+   dentro de `prefers-reduced-motion: no-preference`: sin movimiento,
+   el contenido nace visible, sin estados ocultos y sin esperas.
+   =================================================================== */
+
+@keyframes fade-down {
+  from {
+    opacity: 0;
+    transform: translateY(calc(-1 * var(--lift-reveal)));
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(var(--lift-reveal));
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fade-scale {
+  from {
+    opacity: 0;
+    transform: scale(var(--scale-imagen-entrada));
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes filtro-entrada {
+  from {
+    opacity: 0;
+    transform: translateY(var(--lift-filtro));
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+
+@keyframes resena-estrella-pulso {
+  0%, 100% { transform: scale(1); }
+  45% { transform: scale(var(--scale-resena-estrella)); }
+}
+
+@keyframes resena-animo-entrada {
+  0% { transform: rotate(calc(-1 * var(--rotate-resena-animo))); }
+  40% { transform: rotate(var(--rotate-resena-animo)) scale(var(--scale-resena-animo)); }
+  100% { transform: rotate(0deg) scale(1); }
+}
+
+@keyframes resena-gesto-aparece {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes resena-mirada {
+  0%, 100% { transform: translateX(0); }
+  35%, 60% { transform: translateX(var(--desplazamiento-resena-mirada)); }
+}
+
+@keyframes resena-parpadeo {
+  0%, 18%, 48%, 100% { transform: scaleY(1); }
+  29%, 34% { transform: scaleY(var(--scale-resena-parpadeo)); }
+}
+
+@keyframes resena-guino {
+  0%, 15%, 85%, 100% { transform: scaleY(1); opacity: 1; }
+  30%, 65% { transform: scaleY(var(--scale-resena-parpadeo)); opacity: 0; }
+}
+
+@keyframes resena-guino-cerrado {
+  0%, 18%, 82%, 100% { opacity: 0; }
+  30%, 65% { opacity: 1; }
+}
+
+@keyframes resena-boca-viva {
+  0%, 100% { transform: scale(1); }
+  45% { transform: scaleX(var(--scale-resena-sonrisa)) scaleY(var(--scale-resena-animo)); }
+}
+
+@keyframes resena-boca-seria {
+  0%, 100% { transform: scaleX(1); }
+  45% { transform: scaleX(calc(1 / var(--scale-resena-animo))); }
+}
+
+@keyframes resena-destello {
+  0% { transform: scale(0); opacity: 0; }
+  40% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(var(--scale-resena-destello)); opacity: 0; }
+}
+
+.resena-ojo,
+.resena-ojo-guino-abierto,
+.resena-boca,
+.resena-destello {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.resena-ojo-guino-cerrado { opacity: 0; }
+
+.resena-estrella {
+  transition:
+    fill var(--transition-duration-micro) var(--ease-ui),
+    color var(--transition-duration-micro) var(--ease-ui);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .resena-estrella-cara { animation: var(--animate-resena-mirada); }
+  .resena-ojo-parpadeo { animation: var(--animate-resena-parpadeo); }
+  .resena-ojo-guino-abierto { animation: var(--animate-resena-guino); }
+  .resena-ojo-guino-cerrado { animation: var(--animate-resena-guino); animation-name: resena-guino-cerrado; }
+  .resena-boca { animation: var(--animate-resena-boca); }
+  .resena-estrella-cara[data-animo="serio"] .resena-boca { animation-name: resena-boca-seria; }
+  .resena-destello { animation: var(--animate-resena-destello); }
+  .resena-estrella-gesto { animation: var(--animate-resena-gesto); }
+  .resena-animo-entrada { animation: var(--animate-resena-animo); }
+  .resena-estrella-pulso { animation: var(--animate-resena-estrella); }
+  /* Entrada escalonada de primera impresión:
+     1. El encabezado y logo se revelan primero de arriba hacia abajo.
+     2. El título principal de la portada aparece con suave desplazamiento vertical.
+     3. Los botones de llamada a la acción B2B y el elemento principal emergen en último lugar. */
+  .header-entrada {
+    animation: fade-down var(--transition-duration-reveal) var(--ease-ui) both;
+    animation-delay: 50ms;
+  }
+
+  .hero-entrada {
+    animation: fade-up var(--transition-duration-reveal) var(--ease-ui) both;
+  }
+
+  .hero-entrada--pre {
+    animation-delay: 180ms;
+  }
+
+  .hero-entrada--titulo {
+    animation-delay: 280ms;
+  }
+
+  .hero-entrada--texto {
+    animation-delay: 420ms;
+  }
+
+  .hero-entrada--acciones {
+    animation-delay: 580ms;
+  }
+
+  .hero-foto-contenedor {
+    animation: fade-up var(--transition-duration-reveal) var(--ease-ui) both;
+    animation-delay: 580ms;
+  }
+
+  .hero-foto {
+    animation: fade-scale var(--transition-duration-image-reveal) var(--ease-cine)
+      both;
+    animation-delay: 0ms;
+  }
+
+  /* Scroll reveal: `.revelar` es el disparador (React lo marca con
+     `data-visible` una sola vez por composición) y los hijos marcados
+     con `reveal-texto` / `reveal-foto` son la composición que aparece.
+     Sin marcador, la regla no aplica y el contenido se ve igual. */
+  .revelar .reveal-texto {
+    transition:
+      opacity var(--transition-duration-reveal) var(--ease-ui),
+      transform var(--transition-duration-reveal) var(--ease-ui);
+  }
+
+  .revelar:not([data-visible="true"]) .reveal-texto {
+    opacity: 0;
+    transform: translateY(var(--lift-reveal));
+  }
+
+  .revelar .reveal-foto {
+    transition:
+      opacity var(--transition-duration-image-reveal) var(--ease-cine),
+      transform var(--transition-duration-image-reveal) var(--ease-cine);
+  }
+
+  .revelar:not([data-visible="true"]) .reveal-foto {
+    opacity: 0;
+    transform: scale(var(--scale-imagen-entrada));
+  }
+
+  /* Desfase del contenido respecto a la imagen dentro de una
+     composición: 100 ms, dentro del rango 80–120 ms del sistema. */
+  .revelar .desfase-100 {
+    transition-delay: 100ms;
+  }
+}
+
+/* Subrayado animado de los enlaces del pie: el filete crece de 0 %
+   a 100 % del ancho al pasar el puntero o recibir el foco. Va sin
+   capa para que gane a `transition-colors` de las utilidades y poder
+   llevar también el cambio de color en la misma transición. */
+.enlace-linea {
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0% 1px;
+  transition:
+    background-size var(--transition-duration-micro) var(--ease-ui),
+    color var(--transition-duration-micro) var(--ease-ui),
+    background-color var(--transition-duration-micro) var(--ease-ui);
+}
+
+.enlace-linea:hover,
+.enlace-linea:focus-visible {
+  background-size: 100% 1px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

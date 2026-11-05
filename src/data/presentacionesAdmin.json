@@ -1,0 +1,23 @@
+[
+  {
+    "id": "cafe-lavado-35g",
+    "productoId": "cafe-lavado",
+    "nombre": "35 g",
+    "precioCentavos": 2200,
+    "orden": 0
+  },
+  {
+    "id": "cafe-honey-35g",
+    "productoId": "cafe-honey",
+    "nombre": "35 g",
+    "precioCentavos": 2200,
+    "orden": 0
+  },
+  {
+    "id": "cafe-natural-35g",
+    "productoId": "cafe-natural",
+    "nombre": "35 g",
+    "precioCentavos": 2200,
+    "orden": 0
+  }
+]

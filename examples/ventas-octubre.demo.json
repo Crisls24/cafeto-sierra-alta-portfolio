@@ -1,0 +1,374 @@
+{
+  "periodo": "2026-10",
+  "fuente": "EJEMPLO FICTICIO. No representa ventas, clientes ni resultados reales.",
+  "ventas": [
+    {
+      "clave": "octubre-2026-01",
+      "fecha": "2026-10-01",
+      "fechaAproximada": false,
+      "canal": "otro",
+      "ventaVendedora": false,
+      "totalCentavos": 10000,
+      "envioCentavos": 0,
+      "nota": "Dato ficticio de demostración.",
+      "items": [
+        {
+          "nombreProducto": "Café de demostración",
+          "nombrePresentacion": "250 g",
+          "cantidad": 1,
+          "precioUnitarioCentavos": 10000,
+          "pesoGramos": 250
+        }
+      ]
+    },
+    {
+      "clave": "octubre-2026-02",
+      "fecha": "2026-10-02",
+      "fechaAproximada": false,
+      "canal": "otro",
+      "ventaVendedora": false,
+      "totalCentavos": 10000,
+      "envioCentavos": 0,
+      "nota": "Dato ficticio de demostración.",
+      "items": [
+        {
+          "nombreProducto": "Café de demostración",
+          "nombrePresentacion": "250 g",
+          "cantidad": 1,
+          "precioUnitarioCentavos": 10000,
+          "pesoGramos": 250
+        }
+      ]
+    },
+    {
+      "clave": "octubre-2026-03",
+      "fecha": "2026-10-03",
+      "fechaAproximada": false,
+      "canal": "otro",
+      "ventaVendedora": false,
+      "totalCentavos": 10000,
+      "envioCentavos": 0,
+      "nota": "Dato ficticio de demostración.",
+      "items": [
+        {
+          "nombreProducto": "Café de demostración",
+          "nombrePresentacion": "250 g",
+          "cantidad": 1,
+          "precioUnitarioCentavos": 10000,
+          "pesoGramos": 250
+        }
+      ]
+    },
+    {
+      "clave": "octubre-2026-04",
+      "fecha": "2026-10-04",
+      "fechaAproximada": false,
+      "canal": "otro",
+      "ventaVendedora": false,
+      "totalCentavos": 2200,
+      "envioCentavos": 0,
+      "nota": "Dato ficticio de demostración.",
+      "items": [
+        {
+          "nombreProducto": "Café de demostración",
+          "nombrePresentacion": "35 g",
+          "cantidad": 1,
+          "precioUnitarioCentavos": 2200,
+          "pesoGramos": 35
+        }
+      ]
+    },
+    {
+      "clave": "octubre-2026-05",
+      "fecha": "2026-10-05",
+      "fechaAproximada": false,
+      "canal": "otro",
+      "ventaVendedora": false,
+      "totalCentavos": 10000,
+      "envioCentavos": 0,
+      "nota": "Dato ficticio de demostración.",
+      "items": [
+        {
+          "nombreProducto": "Café de demostración",
+          "nombrePresentacion": "250 g",
+          "cantidad": 1,
+          "precioUnitarioCentavos": 10000,
+          "pesoGramos": 250
+        }
+      ]
+    },
+    {
+      "clave": "octubre-2026-06",
+      "fecha": "2026-10-06",
+      "fechaAproximada": false,
+      "canal": "otro",
+      "ventaVendedora": false,
+      "totalCentavos": 10000,
+      "envioCentavos": 0,
+      "nota": "Dato ficticio de demostración.",
+      "items": [
+        {
+          "nombreProducto": "Café de demostración",
+          "nombrePresentacion": "250 g",
+          "cantidad": 1,
+          "precioUnitarioCentavos": 10000,
+          "pesoGramos": 250
+        }
+      ]
+    },
+    {
+      "clave": "octubre-2026-07",
+      "fecha": "2026-10-07",
+      "fechaAproximada": false,
+      "canal": "otro",
+      "ventaVendedora": false,
+      "totalCentavos": 10000,
+      "envioCentavos": 0,
+      "nota": "Dato ficticio de demostración.",
+      "items": [
+        {
+          "nombreProducto": "Café de demostración",
+          "nombrePresentacion": "250 g",
+          "cantidad": 1,
+          "precioUnitarioCentavos": 10000,
+          "pesoGramos": 250
+        }
+      ]
+    },
+    {
+      "clave": "octubre-2026-08",
+      "fecha": "2026-10-08",
+      "fechaAproximada": false,
+      "canal": "otro",
+      "ventaVendedora": false,
+      "totalCentavos": 10000,
+      "envioCentavos": 0,
+      "nota": "Dato ficticio de demostración.",
+      "items": [
+        {
+          "nombreProducto": "Café de demostración",
+          "nombrePresentacion": "250 g",
+          "cantidad": 1,
+          "precioUnitarioCentavos": 10000,
+          "pesoGramos": 250
+        }
+      ]
+    },
+    {
+      "clave": "octubre-2026-09",
+      "fecha": "2026-10-09",
+      "fechaAproximada": false,
+      "canal": "otro",
+      "ventaVendedora": false,
+      "totalCentavos": 10000,
+      "envioCentavos": 0,
+      "nota": "Dato ficticio de demostración.",
+      "items": [
+        {
+          "nombreProducto": "Café de demostración",
+          "nombrePresentacion": "250 g",
+          "cantidad": 1,
+          "precioUnitarioCentavos": 10000,
+          "pesoGramos": 250
+        }
+      ]
+    },
+    {
+      "clave": "octubre-2026-10",
+      "fecha": "2026-10-10",
+      "fechaAproximada": false,
+      "canal": "otro",
+      "ventaVendedora": false,
+      "totalCentavos": 10000,
+      "envioCentavos": 0,
+      "nota": "Dato ficticio de demostración.",
+      "items": [
+        {
+          "nombreProducto": "Café de demostración",
+          "nombrePresentacion": "250 g",
+          "cantidad": 1,
+          "precioUnitarioCentavos": 10000,
+          "pesoGramos": 250
+        }
+      ]
+    },
+    {
+      "clave": "octubre-2026-11",
+      "fecha": "2026-10-11",
+      "fechaAproximada": false,
+      "canal": "otro",
+      "ventaVendedora": false,
+      "totalCentavos": 10000,
+      "envioCentavos": 0,
+      "nota": "Dato ficticio de demostración.",
+      "items": [
+        {
+          "nombreProducto": "Café de demostración",
+          "nombrePresentacion": "250 g",
+          "cantidad": 1,
+          "precioUnitarioCentavos": 10000,
+          "pesoGramos": 250
+        }
+      ]
+    },
+    {
+      "clave": "octubre-2026-12",
+      "fecha": "2026-10-12",
+      "fechaAproximada": false,
+      "canal": "otro",
+      "ventaVendedora": false,
+      "totalCentavos": 10000,
+      "envioCentavos": 0,
+      "nota": "Dato ficticio de demostración.",
+      "items": [
+        {
+          "nombreProducto": "Café de demostración",
+          "nombrePresentacion": "250 g",
+          "cantidad": 1,
+          "precioUnitarioCentavos": 10000,
+          "pesoGramos": 250
+        }
+      ]
+    },
+    {
+      "clave": "octubre-2026-13",
+      "fecha": "2026-10-13",
+      "fechaAproximada": false,
+      "canal": "otro",
+      "ventaVendedora": false,
+      "totalCentavos": 10000,
+      "envioCentavos": 0,
+      "nota": "Dato ficticio de demostración.",
+      "items": [
+        {
+          "nombreProducto": "Café de demostración",
+          "nombrePresentacion": "250 g",
+          "cantidad": 1,
+          "precioUnitarioCentavos": 10000,
+          "pesoGramos": 250
+        }
+      ]
+    },
+    {
+      "clave": "octubre-2026-14",
+      "fecha": "2026-10-14",
+      "fechaAproximada": false,
+      "canal": "otro",
+      "ventaVendedora": false,
+      "totalCentavos": 10000,
+      "envioCentavos": 0,
+      "nota": "Dato ficticio de demostración.",
+      "items": [
+        {
+          "nombreProducto": "Café de demostración",
+          "nombrePresentacion": "250 g",
+          "cantidad": 1,
+          "precioUnitarioCentavos": 10000,
+          "pesoGramos": 250
+        }
+      ]
+    },
+    {
+      "clave": "octubre-2026-15",
+      "fecha": "2026-10-15",
+      "fechaAproximada": true,
+      "canal": "otro",
+      "ventaVendedora": false,
+      "totalCentavos": 11000,
+      "envioCentavos": 1000,
+      "nota": "Dato ficticio de demostración.",
+      "items": [
+        {
+          "nombreProducto": "Café de demostración",
+          "nombrePresentacion": "250 g",
+          "cantidad": 1,
+          "precioUnitarioCentavos": null,
+          "pesoGramos": 250
+        }
+      ]
+    },
+    {
+      "clave": "octubre-2026-16",
+      "fecha": "2026-10-16",
+      "fechaAproximada": false,
+      "canal": "otro",
+      "ventaVendedora": false,
+      "totalCentavos": 10000,
+      "envioCentavos": 0,
+      "nota": "Dato ficticio de demostración.",
+      "items": [
+        {
+          "nombreProducto": "Café de demostración",
+          "nombrePresentacion": "250 g",
+          "cantidad": 1,
+          "precioUnitarioCentavos": 10000,
+          "pesoGramos": 250
+        }
+      ]
+    },
+    {
+      "clave": "octubre-2026-17",
+      "fecha": "2026-10-17",
+      "fechaAproximada": false,
+      "canal": "otro",
+      "ventaVendedora": false,
+      "totalCentavos": 10000,
+      "envioCentavos": 0,
+      "nota": "Dato ficticio de demostración.",
+      "items": [
+        {
+          "nombreProducto": "Café de demostración",
+          "nombrePresentacion": "250 g",
+          "cantidad": 1,
+          "precioUnitarioCentavos": 10000,
+          "pesoGramos": 250
+        }
+      ]
+    },
+    {
+      "clave": "octubre-2026-18",
+      "fecha": "2026-10-18",
+      "fechaAproximada": false,
+      "canal": "otro",
+      "ventaVendedora": true,
+      "totalCentavos": 9500,
+      "envioCentavos": 0,
+      "nota": "Dato ficticio de demostración.",
+      "items": [
+        {
+          "nombreProducto": "Café de demostración",
+          "nombrePresentacion": "250 g",
+          "cantidad": 1,
+          "precioUnitarioCentavos": 8000,
+          "pesoGramos": 250
+        },
+        {
+          "nombreProducto": "Café de demostración",
+          "nombrePresentacion": "35 g",
+          "cantidad": 1,
+          "precioUnitarioCentavos": 1500,
+          "pesoGramos": 35
+        }
+      ]
+    },
+    {
+      "clave": "octubre-2026-19",
+      "fecha": "2026-10-19",
+      "fechaAproximada": false,
+      "canal": "otro",
+      "ventaVendedora": false,
+      "totalCentavos": 10000,
+      "envioCentavos": 0,
+      "nota": "Dato ficticio de demostración.",
+      "items": [
+        {
+          "nombreProducto": "Café de demostración",
+          "nombrePresentacion": "250 g",
+          "cantidad": 1,
+          "precioUnitarioCentavos": 10000,
+          "pesoGramos": 250
+        }
+      ]
+    }
+  ]
+}

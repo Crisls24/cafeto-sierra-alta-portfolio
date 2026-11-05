@@ -1,0 +1,72 @@
+{
+  "fuente": "EJEMPLO FICTICIO. Costos inventados para pruebas y documentación.",
+  "cafeTostadoPorKiloCentavos": 10000,
+  "compras": {
+    "actual": {
+      "pesoGramos": 60000,
+      "gasolinaCentavos": 60000
+    },
+    "octubre": {
+      "pesoGramos": 30000,
+      "gasolinaCentavos": 60000
+    }
+  },
+  "presentaciones": [
+    {
+      "nombre": "250 g",
+      "pesoGramos": 250,
+      "bolsaCentavos": 100,
+      "etiquetaFrenteCentavos": 20,
+      "etiquetaAtrasCentavos": 20
+    },
+    {
+      "nombre": "500 g",
+      "pesoGramos": 500,
+      "bolsaCentavos": 150,
+      "etiquetaFrenteCentavos": 30,
+      "etiquetaAtrasCentavos": 30
+    },
+    {
+      "nombre": "1 kg",
+      "pesoGramos": 1000,
+      "bolsaCentavos": 200,
+      "etiquetaFrenteCentavos": 40,
+      "etiquetaAtrasCentavos": 40
+    },
+    {
+      "nombre": "35 g",
+      "pesoGramos": 35,
+      "bolsaCentavos": 50,
+      "etiquetaFrenteCentavos": 10,
+      "etiquetaAtrasCentavos": 0
+    }
+  ],
+  "gastosOctubre": [
+    {
+      "id": "demo-selladora",
+      "concepto": "Selladora de ejemplo",
+      "tipo": "equipo",
+      "importeCentavos": 10000
+    },
+    {
+      "id": "demo-molino",
+      "concepto": "Molino de ejemplo",
+      "tipo": "equipo",
+      "importeCentavos": 20000
+    },
+    {
+      "id": "demo-uniformes",
+      "concepto": "Uniformes de ejemplo",
+      "tipo": "operativo",
+      "importeCentavos": 15000
+    },
+    {
+      "id": "demo-franela",
+      "concepto": "Franela de ejemplo",
+      "tipo": "operativo",
+      "importeCentavos": 5000
+    }
+  ],
+  "costoEnvioOctubreCentavos": 1000,
+  "alcance": "Ejemplo de costo proporcional con valores ficticios. No utilizar en producción."
+}

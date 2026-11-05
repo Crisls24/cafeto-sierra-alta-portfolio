@@ -1,0 +1,52 @@
+import { test } from "node:test";
+import assert from "node:assert/strict";
+import { readFileSync, readdirSync } from "node:fs";
+import { DatabaseSync } from "node:sqlite";
+import { prepararCostosCafe } from "./preparar-costos-cafe.mjs";
+import { prepararOctubre } from "./preparar-ventas-octubre.mjs";
+
+const datos = JSON.parse(readFileSync(new URL("../examples/costos-cafe.demo.json", import.meta.url), "utf8"));
+test("incluye café, empaque y gasolina del lote; el histórico mantiene su propia compra", () => {
+  assert.deepEqual(prepararCostosCafe(datos).resumen.map(p => p.costoCentavos), [2890, 5710, 11280, 445]);
+  assert.deepEqual(prepararCostosCafe(datos).historicos.map(p => p.costoCentavos), [3140, 6210, 12280, 480]);
+  const pendiente = structuredClone(datos); pendiente.presentaciones[3].bolsaCentavos = null;
+  assert.equal(prepararCostosCafe(pendiente).resumen[3].costoCentavos, null);
+  const incorrectos = structuredClone(datos);
+  incorrectos.presentaciones[0].pesoGramos = 500;
+  assert.throws(() => prepararCostosCafe(incorrectos), /Peso incorrecto/);
+  assert.throws(() => prepararCostosCafe({ ...datos, cafeTostadoPorKiloCentavos: -1 }));
+});
+test("actualiza los tres cafés sin cambiar precios, otros productos ni costos históricos", () => {
+  const db = new DatabaseSync(":memory:");
+  db.exec("PRAGMA foreign_keys=ON");
+  for (const f of readdirSync(new URL("../migrations/", import.meta.url)).filter(f => f.endsWith(".sql")).sort()) db.exec(readFileSync(new URL(`../migrations/${f}`, import.meta.url), "utf8"));
+  db.exec("INSERT INTO pedidos(id,folio) VALUES ('historica',1); INSERT INTO pedido_items(id,pedido_id,nombre_producto,nombre_presentacion,cantidad,precio_unitario_centavos,costo_unitario_centavos) VALUES ('articulo','historica','Café','250 g',1,10000,5000)");
+  const precios = db.prepare("SELECT id,precio_centavos FROM presentaciones ORDER BY id").all();
+  db.exec(prepararCostosCafe(datos).catalogoSql);
+  assert.equal(db.prepare("SELECT COUNT(*) n FROM presentaciones WHERE costo_centavos IS NOT NULL").get().n,9);
+  assert.deepEqual(db.prepare("SELECT id,precio_centavos FROM presentaciones ORDER BY id").all(),precios);
+  assert.equal(db.prepare("SELECT costo_unitario_centavos n FROM pedido_items").get().n,5000);
+  assert.equal(db.prepare("SELECT costo_centavos n FROM presentaciones WHERE id='miel-multiflora-litro'").get().n,null);
+  db.close();
+});
+test("carga costos de octubre y gastos una vez sin alterar las ventas ni sus precios", () => {
+  const db = new DatabaseSync(":memory:");
+  db.exec("PRAGMA foreign_keys=ON");
+  for (const f of readdirSync(new URL("../migrations/", import.meta.url)).filter(f => f.endsWith(".sql")).sort()) db.exec(readFileSync(new URL(`../migrations/${f}`, import.meta.url), "utf8"));
+  const ventas = JSON.parse(readFileSync(new URL("../examples/ventas-octubre.demo.json", import.meta.url), "utf8"));
+  db.exec(prepararOctubre(ventas,{pago:"pagado",entrega:"entregado"}));
+  const precios = db.prepare("SELECT id,precio_unitario_centavos FROM pedido_items ORDER BY id").all();
+  const carga = prepararCostosCafe(datos,ventas).octubreSql;
+  db.exec(carga); db.exec(carga);
+  assert.equal(db.prepare("SELECT COUNT(*) n FROM pedidos").get().n,19);
+  assert.equal(db.prepare("SELECT COUNT(*) n FROM pedido_items WHERE costo_unitario_centavos IS NULL").get().n,0);
+  assert.equal(db.prepare("SELECT SUM(importe_centavos) n FROM gastos_mensuales").get().n,50000);
+  assert.equal(db.prepare("SELECT COUNT(*) n FROM gastos_mensuales").get().n,4);
+  assert.equal(db.prepare("SELECT costo_envio_centavos n FROM pedidos WHERE importacion_clave='octubre-2026-15'").get().n,1000);
+  assert.deepEqual(db.prepare("SELECT id,precio_unitario_centavos FROM pedido_items ORDER BY id").all(),precios);
+  db.exec("UPDATE pedido_items SET costo_unitario_centavos=1 WHERE id='octubre-2026-01-item-0'");
+  db.exec(carga);
+  assert.equal(db.prepare("SELECT costo_unitario_centavos n FROM pedido_items WHERE id='octubre-2026-01-item-0'").get().n,1);
+  assert.equal(db.prepare("PRAGMA foreign_key_check").all().length,0);
+  db.close();
+});
